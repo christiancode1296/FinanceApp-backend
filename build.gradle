@@ -43,27 +43,3 @@ node {
     npmWorkDir = file("${project.buildDir}/npm")
     nodeProjectDir = file("${rootDir}/frontend")
 }
-
-// Task: npm install
-tasks.register('npmInstallFrontend', com.github.gradle.node.npm.task.NpmTask) {
-    args = ['install']
-    workingDir = file("${rootDir}/frontend")
-}
-
-
-// Task: npm run build
-tasks.register('npmBuildFrontend', com.github.gradle.node.npm.task.NpmTask) {
-    dependsOn 'npmInstallFrontend'
-    args = ['run', 'build']
-    workingDir = file("${rootDir}/frontend")
-}
-
-// Task: Vue dist nach static kopieren
-tasks.register('copyFrontend', Copy) {
-    dependsOn 'npmBuildFrontend'
-    from("${rootDir}/frontend/dist")
-    into("${projectDir}/src/main/resources/static")
-}
-
-// Spring Boot Build hängt am Frontend-Build
-processResources.dependsOn 'copyFrontend'
