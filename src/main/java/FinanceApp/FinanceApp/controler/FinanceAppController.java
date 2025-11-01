@@ -30,10 +30,4 @@ public class FinanceAppController  {
                     .body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
-
-    // optional: zum schnellen Prüfen, ob Backend läuft
-    @GetMapping("/health")
-    public ResponseEntity<String> health() {
-        return ResponseEntity.ok("{\"status\":\"UP\"}");
-    }
 }
