@@ -1,4 +1,4 @@
-package FinanceApp.FinanceApp;
+package FinanceApp.FinanceApp.controler;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
