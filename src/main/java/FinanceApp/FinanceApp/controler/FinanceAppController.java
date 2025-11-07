@@ -7,20 +7,34 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/api/stocks")
-public class FinanceAppController  {
+public class FinanceAppController {
 
     @Value("${fmp.api.key}")
     private String apiKey;
 
     @Value("${fmp.base.url}")
-    private String baseUrl; // z.B. https://financialmodelingprep.com/api/v3
+    private String baseUrl; // jetzt korrekt: https://financialmodelingprep.com/stable
 
     @GetMapping("/{symbol}")
     public ResponseEntity<String> getStockData(@PathVariable String symbol) {
         try {
+            String url = String.format("%s/historical-price-eod/full?symbol=%s&apikey=%s", baseUrl, symbol, apiKey);
+
+            RestTemplate restTemplate = new RestTemplate();
+            String response = restTemplate.getForObject(url, String.class);
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+    @GetMapping("/search")
+    public ResponseEntity<String> searchStocks(@RequestParam String query) {
+        try {
             String url = String.format(
-                    "https://financialmodelingprep.com/stable/historical-price-eod/full?symbol=%s&apikey=%s",
-                    symbol, apiKey  // apiKey kommt aus application.properties wie besprochen
+                    "%s/search-name?query=%s&apikey=%s",
+                    baseUrl, query, apiKey
             );
             RestTemplate restTemplate = new RestTemplate();
             String response = restTemplate.getForObject(url, String.class);
@@ -30,4 +44,5 @@ public class FinanceAppController  {
                     .body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
+
 }
