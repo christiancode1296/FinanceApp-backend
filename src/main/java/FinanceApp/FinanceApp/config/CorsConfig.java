@@ -15,7 +15,7 @@ public class CorsConfig implements WebMvcConfigurer {
                         "http://localhost:3000",
                         "http://localhost:8081",
                         "https://stockoverflow-80m4.onrender.com",
-                        "https://stockoverflow-backend-nw8f.onrender.com"
+                        "https://stockoverflow-backend-1.onrender.com"
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
