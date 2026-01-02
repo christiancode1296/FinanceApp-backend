@@ -1,12 +1,14 @@
 package FinanceApp.FinanceApp.controler;
 
+import FinanceApp.FinanceApp.entity.HistoricalData;
 import FinanceApp.FinanceApp.entity.Stock;
 import FinanceApp.FinanceApp.repository.StockRepository;
+import FinanceApp.FinanceApp.service.StockDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -16,23 +18,14 @@ public class FinanceAppController {
     @Autowired
     private StockRepository stockRepository;
 
-    @Value("${fmp.api.key}")
-    private String apiKey;
-
-    @Value("${fmp.base.url}")
-    private String baseUrl;
+    @Autowired
+    private StockDataService stockDataService;
 
     @GetMapping("/{symbol}")
-    public ResponseEntity<String> getStockData(@PathVariable String symbol) {
-        try {
-            String url = String.format("%s/historical-price-eod/full?symbol=%s&apikey=%s", baseUrl, symbol, apiKey);
-            RestTemplate restTemplate = new RestTemplate();
-            String response = restTemplate.getForObject(url, String.class);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("{\"error\":\"" + e.getMessage() + "\"}");
-        }
+    public ResponseEntity<List<HistoricalData>> getStockData(@PathVariable String symbol) {
+        // Fix: Ändere den Typ von HistoricalData zu List<HistoricalData>
+        List<HistoricalData> data = stockDataService.getStockData(symbol);
+        return ResponseEntity.ok(data);
     }
 
     @GetMapping("/all")
@@ -46,3 +39,4 @@ public class FinanceAppController {
         return ResponseEntity.ok(results);
     }
 }
+

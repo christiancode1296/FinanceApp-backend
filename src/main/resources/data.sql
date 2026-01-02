@@ -86,6 +86,7 @@ VALUES ('AAPL', 'Apple Inc.', 'NASDAQ'),
        ('RKT', 'Rocket Companies, Inc.', 'NYSE');
 
 
+CREATE INDEX idx_historical_symbol ON historical_data(symbol);
 
 
 

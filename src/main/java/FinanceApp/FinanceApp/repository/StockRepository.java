@@ -9,8 +9,10 @@ import java.util.Optional;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {
+
     Optional<Stock> findBySymbol(String symbol);
 
-    @Query("SELECT s FROM Stock s WHERE UPPER(s.name) LIKE UPPER(CONCAT('%', :query, '%')) OR UPPER(s.symbol) LIKE UPPER(CONCAT('%', :query, '%')) ORDER BY s.symbol ASC")
+    @Query("SELECT s FROM Stock s WHERE LOWER(s.symbol) LIKE LOWER(CONCAT('%', :query, '%')) " +
+            "OR LOWER(s.name) LIKE LOWER(CONCAT('%', :query, '%'))")
     List<Stock> searchStocks(String query);
 }
