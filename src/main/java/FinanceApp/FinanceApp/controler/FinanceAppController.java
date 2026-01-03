@@ -70,7 +70,7 @@ import java.util.List;
  *   <li><b>ResponseEntity:</b> Ermöglicht präzise HTTP-Antworten mit Statuscode</li>
  * </ul>
  *
- * @author Christian
+ * @author christiancode1296
  * @version 1.0
  * @since 1.0
  * @see Stock

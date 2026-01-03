@@ -2,6 +2,40 @@ package FinanceApp.FinanceApp.repository;
 
 import FinanceApp.FinanceApp.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 
-public interface WatchlistRepository extends JpaRepository<Watchlist, UUID> {}
+/**
+ * Spring Data JPA Repository für den Zugriff auf Watchlists (Beobachtungslisten).
+ * <p>
+ * Dieses Interface erweitert {@link JpaRepository} und bietet automatisch generierte
+ * CRUD-Operationen für die {@link Watchlist}-Entity. Im Gegensatz zu anderen Repositories
+ * verwendet dieses Interface {@link UUID} als Primärschlüssel-Typ.
+ * </p>
+ * <p>
+ * Watchlists ermöglichen es Nutzern, Aktien zu einer Beobachtungsliste hinzuzufügen,
+ * um deren Kursentwicklung zu verfolgen.
+ * </p>
+ * <p>
+ * Aktuell werden nur die Standard-CRUD-Operationen benötigt. Custom Queries können
+ * bei Bedarf ergänzt werden (z.B. {@code findByUserId()}, {@code findByNameContaining()}).
+ * </p>
+ *
+ * @author christiancode1296
+ * @version 1.0
+ * @since 2025-01-02
+ * @see Watchlist
+ * @see JpaRepository
+ */
+@Repository
+public interface WatchlistRepository extends JpaRepository<Watchlist, UUID> {
+    // Keine custom Queries erforderlich - Standard-CRUD-Operationen sind ausreichend
+
+    // Verfügbare Methoden (automatisch generiert von JpaRepository):
+    // - save(Watchlist) - Watchlist speichern/aktualisieren
+    // - findById(UUID) - Watchlist anhand UUID finden
+    // - findAll() - Alle Watchlists abrufen
+    // - deleteById(UUID) - Watchlist löschen
+    // - existsById(UUID) - Prüfen, ob Watchlist existiert
+}

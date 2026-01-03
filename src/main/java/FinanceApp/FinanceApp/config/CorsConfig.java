@@ -47,7 +47,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *   <li><b>Alle Endpoints (/**):</b> CORS gilt für alle API-Endpoints - ggf. spezifischer konfigurieren</li>
  * </ul>
  *
- * @author Christian
+ * @author christiancode1296
  * @version 1.0
  * @since 1.0
  * @see WebMvcConfigurer
