@@ -1,6 +1,7 @@
 package FinanceApp.FinanceApp.repository;
 
 import FinanceApp.FinanceApp.domain.*;
+import FinanceApp.FinanceApp.entity.WatchlistItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -29,13 +30,8 @@ import java.util.*;
  * @see JpaRepository
  */
 @Repository
-public interface WatchlistRepository extends JpaRepository<Watchlist, UUID> {
-    // Keine custom Queries erforderlich - Standard-CRUD-Operationen sind ausreichend
-
-    // Verfügbare Methoden (automatisch generiert von JpaRepository):
-    // - save(Watchlist) - Watchlist speichern/aktualisieren
-    // - findById(UUID) - Watchlist anhand UUID finden
-    // - findAll() - Alle Watchlists abrufen
-    // - deleteById(UUID) - Watchlist löschen
-    // - existsById(UUID) - Prüfen, ob Watchlist existiert
+public interface WatchlistRepository extends JpaRepository<FinanceApp.FinanceApp.entity.WatchlistItem, Long> {
+    List<WatchlistItem> findByUserId(String userId);
+    void deleteByUserIdAndSymbol(String userId, String symbol);
 }
+
