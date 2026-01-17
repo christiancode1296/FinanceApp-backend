@@ -4,6 +4,7 @@ import FinanceApp.FinanceApp.entity.WatchlistItem;
 import FinanceApp.FinanceApp.repository.WatchlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class WatchlistController {
     }
 
     @DeleteMapping("/{userId}/{symbol}")
+    @Transactional
     public void removeFromWatchlist(@PathVariable String userId, @PathVariable String symbol) {
         repository.deleteByUserIdAndSymbol(userId, symbol);
     }
