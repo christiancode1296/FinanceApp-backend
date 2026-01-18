@@ -8,7 +8,7 @@ Das Projekt wurde im Rahmen des Moduls **Webtechnologien an der HTW Berlin** ent
 
 ## ✨ Hauptfunktionen
 
-### 📡 Aktiendata & Suche
+### 🔍 Aktiendata & Suche
 *   **Integration externer APIs:** Anbindung an die [Financial Modeling Prep (FMP) API](https://financialmodelingprep.com/) für zuverlässige Marktdaten.
 *   **Historische Kursdaten:** Aufbereitung von Kursverläufen für interaktive Charts (30 Tage bis 3 Jahre).
 *   **Effiziente Suche:** Schnellsuche nach Tickersymbolen und Firmennamen.
