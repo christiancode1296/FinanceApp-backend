@@ -1,4 +1,4 @@
-package FinanceApp.FinanceApp.controler;
+package FinanceApp.FinanceApp.controller;
 
 import FinanceApp.FinanceApp.entity.HistoricalData;
 import FinanceApp.FinanceApp.entity.Stock;

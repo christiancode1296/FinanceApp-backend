@@ -166,7 +166,7 @@ public class StockDataService {
      * @param yesterday gestern (neueste mögliche Daten von der API)
      * @return true, wenn Update nötig ist
      */
-    private boolean shouldUpdateData(LocalDate lastDate, LocalDate yesterday) {
+    public boolean shouldUpdateData(LocalDate lastDate, LocalDate yesterday) {
         // Fall 1: Daten sind bereits aktuell (lastDate >= gestern)
         if (!lastDate.isBefore(yesterday)) {
             return false;
@@ -190,7 +190,7 @@ public class StockDataService {
      * @param date zu prüfendes Datum
      * @return true, wenn Samstag oder Sonntag
      */
-    private boolean isWeekend(LocalDate date) {
+    public boolean isWeekend(LocalDate date) {
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY;
     }
@@ -204,7 +204,7 @@ public class StockDataService {
      * @param date Referenzdatum
      * @return letzter Börsentag (Montag-Freitag)
      */
-    private LocalDate getLastTradingDay(LocalDate date) {
+    public LocalDate getLastTradingDay(LocalDate date) {
         LocalDate current = date;
         while (isWeekend(current)) {
             current = current.minusDays(1);
